@@ -1,0 +1,9 @@
+//gradle files
+*gradle-wrapper.properties
+.gradle
+
+//intellij
+.idea
+
+//build
+/build
