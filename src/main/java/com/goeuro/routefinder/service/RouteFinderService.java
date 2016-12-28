@@ -34,7 +34,7 @@ public class RouteFinderService {
       if(individualRoute.get(arrivalStationID) != null){
         arrivalStationNumber = individualRoute.get(arrivalStationID);
       }      
-      if(departureStationNumber < arrivalStationNumber){
+      if((departureStationNumber < arrivalStationNumber) && (departureStationNumber > 0)){
         return true;
       }
     }
