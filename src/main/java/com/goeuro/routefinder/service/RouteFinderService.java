@@ -3,33 +3,41 @@ package com.goeuro.routefinder.service;
 import com.goeuro.routefinder.component.DirectRouteExistInfo;
 import com.goeuro.routefinder.component.PlannedRoutes;
 
-import java.util.List;
+import java.util.Map;
 
 public class RouteFinderService {
 
-    List<String> busRouteList = null;
+  Map<Integer, Map<Integer, Integer>> busRouteMap = null;
 
-    public RouteFinderService() {
+  public RouteFinderService() {
+  }
+
+  public DirectRouteExistInfo checkRouteExist(int departureStationID, int arrivalStationID) {
+
+    if (busRouteMap == null){
+      this.busRouteMap = new PlannedRoutes().getRouteMap();
     }
-
-    public DirectRouteExistInfo checkRouteExist(int departureStationID, int arrivalStationID) {
-
-        if (busRouteList == null)
-            this.busRouteList = new PlannedRoutes().getListOfStops();
-
-
-        for (String route : this.busRouteList) {
-            if (checkParticularBusRoute(route, departureStationID, arrivalStationID)) {
-                return new DirectRouteExistInfo(departureStationID, arrivalStationID, true);
-            }
-        }
-        return new DirectRouteExistInfo(departureStationID, arrivalStationID, false);
+    
+    if (checkParticularBusRoute(departureStationID, arrivalStationID)) {
+        return new DirectRouteExistInfo(departureStationID, arrivalStationID, true);
     }
+    return new DirectRouteExistInfo(departureStationID, arrivalStationID, false);
+  }
 
-    private boolean checkParticularBusRoute(String route, int departureStationID, int arrivalStationID) {
-        return route.contains(" " + departureStationID + " ") && route.contains(" " + arrivalStationID + " ") &&
-                (route.indexOf(" " + arrivalStationID + " ") > route.indexOf(" " + departureStationID + " "));
+  private boolean checkParticularBusRoute(int departureStationID, int arrivalStationID) {
+    for (Map<Integer, Integer> individualRoute : busRouteMap.values()){
+      int departureStationNumber = -1;
+      int arrivalStationNumber = -1;
+      if(individualRoute.get(departureStationID) != null){
+        departureStationNumber = individualRoute.get(departureStationID); 
+      }
+      if(individualRoute.get(arrivalStationID) != null){
+        arrivalStationNumber = individualRoute.get(arrivalStationID);
+      }      
+      if(departureStationNumber < arrivalStationNumber){
+        return true;
+      }
     }
-
-
+    return false;
+  }
 }
