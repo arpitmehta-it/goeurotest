@@ -23,4 +23,5 @@ public class DirectRouteExistInfo {
     public boolean isDirect_bus_route() {
         return direct_bus_route;
     }
+    
 }
