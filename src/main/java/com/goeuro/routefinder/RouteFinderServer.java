@@ -9,6 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 public class RouteFinderServer {
 
     public static void main(String[] args) {
-        SpringApplication.run(RouteFinderServer.class, args);
+        SpringApplication.run(RouteFinderServer.class, args); 
     }
 }
