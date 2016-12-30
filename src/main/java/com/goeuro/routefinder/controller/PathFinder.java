@@ -13,9 +13,8 @@ public class PathFinder {
     public
     @ResponseBody
     DirectRouteExistInfo existsDirectRoute(@RequestParam(value = "dep_sid") int departureStationId,
-                                           @RequestParam(value = "arr_sid") int arrivalStationId) {
-        
+                                           @RequestParam(value = "arr_sid") int arrivalStationId) { 
         return routeFinderService.checkRouteExist(departureStationId, arrivalStationId);
-
     }
+    
 }
