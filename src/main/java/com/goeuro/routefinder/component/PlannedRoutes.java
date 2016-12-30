@@ -21,7 +21,7 @@ public class PlannedRoutes implements ApplicationRunner {
 
   /**
    * Here write logic for loading and storing the file in-memory
-   *
+   * TODO: Hot restart on file change
    * @param args
    * @throws Exception
    */
@@ -32,7 +32,10 @@ public class PlannedRoutes implements ApplicationRunner {
     routeMap = createBusRouteFromFile();
   }
 
-
+/**
+   * Building Route Hashmap Object by reading the input example file
+   * return the route map object, empty map otherwise
+   */
   public  Map<Integer, Map<Integer, Integer>> createBusRouteFromFile() {
     try {
       Scanner fileIn = new Scanner(new File(this.filePath));
