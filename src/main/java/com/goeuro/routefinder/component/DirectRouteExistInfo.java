@@ -1,5 +1,8 @@
 package com.goeuro.routefinder.component;
 
+/**
+This class holds the the return object of the REST call 
+**/
 public class DirectRouteExistInfo {
 
     private final int dep_sid;
