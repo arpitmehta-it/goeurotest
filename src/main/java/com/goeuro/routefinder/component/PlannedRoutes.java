@@ -46,7 +46,7 @@ public class PlannedRoutes implements ApplicationRunner {
         String[] routeSplit = inputLine.split(" ");
         int routeNumber = Integer.parseInt(routeSplit[0]);
         Map<Integer, Integer> individualRouteMap = new HashMap<>();
-        for(int i = 0; i<routeSplit.length; i++){
+        for(int i = 1; i<routeSplit.length; i++){
           individualRouteMap.put(Integer.parseInt(routeSplit[i]), i);
         }
         routeMap.put(routeNumber, individualRouteMap);
